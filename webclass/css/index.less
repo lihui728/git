@@ -1,0 +1,75 @@
+ //变量
+@nice-blue : #000;
+@newcolor : @nice-blue + #888;
+@width : 100px + 100px;
+@height : 100px + 100px;
+
+  //minxin 混入
+.bordered{
+    border-top:dotted 1px black;
+    border-bottom:solid 2px black;
+}
+.demo{
+   width:@width;
+   height:@height;
+   background:@newcolor;
+    p{
+      @width:100px;
+      @height:100px;
+      @bg:red;
+      width:@width;
+      height:@height;
+      background:@bg+#111111;
+      span{
+        color:green;
+      }
+    }
+    
+}
+//条件的指令@media,到某个条件采用不同样式
+/*.wrapper{
+  @media screen {
+    color: green;
+    @media (min-width: 768px) {
+      color: red;
+    }
+  }
+  @media tv {
+    color: black;
+  }
+}*/
+//运算符 + - * /
+@w:100px + 100px;
+@h:10px*10px;
+
+//功能，函数
+@base :#f04615 ;
+@width : 0.5;
+.wrapper{
+  width:percentage(@width);
+  color:saturate(@base,5%);
+  background-color:spin(lighten(@base,25%),8);
+}
+
+//命令空间和访问器
+#bundle{
+  .button{
+    display : block;
+    border : 1px solid black;
+    &:hover{
+      background:red;
+    }
+  }
+}
+.wrapper{
+  #bundle > .button;
+}
+
+//范围相当于js的作用域
+@var : red;
+#page{
+  @var:white;
+  #header{
+    color:@var;
+  }
+}
